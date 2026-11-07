@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>ڕێگای سەرکەوتن | ڕێبەری گەنجان</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+:root{--bg:#f4f6fb;--surface:#fff;--surface2:#f8fafc;--ink:#172033;--muted:#687386;--line:#e5e9f1;--gold:#d99a20;--gold2:#f5c45b;--navy:#101827;--green:#16866b;--shadow:0 16px 45px rgba(25,38,60,.08);--radius:22px}
+[data-theme="dark"]{--bg:#0c1220;--surface:#141e2e;--surface2:#1b293b;--ink:#edf2fa;--muted:#a8b4c6;--line:#29384c;--shadow:0 16px 45px rgba(0,0,0,.24)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',Tahoma,sans-serif;font-size:16px;line-height:1.9;transition:background .25s,color .25s}
+button,input{font:inherit}
+button{cursor:pointer}
+.progress{position:fixed;inset:0 0 auto;height:4px;background:transparent;z-index:100}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .12s}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 15% 15%,#d99a2030,transparent 28%),radial-gradient(circle at 90% 90%,#4776ad35,transparent 30%),linear-gradient(135deg,#101827,#1c2c42);color:#fff;padding:52px 18px 44px}
+.hero:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff13;border-radius:50%;left:-130px;bottom:-190px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff05}
+.hero-inner{max-width:1050px;margin:auto;position:relative;z-index:1;text-align:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 15px;border:1px solid #f5c45b66;background:#f5c45b16;color:#ffda83;border-radius:999px;font-size:13px;font-weight:800}
+h1{font-size:clamp(30px,5vw,54px);line-height:1.35;margin:18px 0 10px;font-weight:900}
+h1 em{font-style:normal;color:#f5c45b}
+.hero p{max-width:760px;margin:0 auto;color:#d6deea;font-size:16px}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:25px}
+.stat{border:1px solid #ffffff24;background:#ffffff0d;border-radius:14px;padding:7px 15px;color:#f7d78e;font-size:13px;font-weight:700}
+.toolbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.toolbar-inner{max-width:1150px;margin:auto;padding:10px 16px;display:flex;align-items:center;gap:9px}
+.search-wrap{position:relative;flex:1;min-width:130px}
+.search-wrap span{position:absolute;right:13px;top:8px;color:var(--muted)}
+.search{width:100%;border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:13px;padding:9px 39px 9px 12px;outline:none}
+.search:focus{border-color:var(--gold);box-shadow:0 0 0 3px #d99a2020}
+.tool-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:8px 11px;font-size:14px;font-weight:700;white-space:nowrap}
+.tool-btn:hover{border-color:var(--gold)}
+.tabs{max-width:1150px;margin:auto;padding:11px 16px 13px;display:flex;gap:8px;overflow:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:1px solid var(--line);background:var(--surface2);color:var(--muted);border-radius:999px;padding:7px 14px;white-space:nowrap;font-size:13px;font-weight:700}
+.tab.active{background:var(--navy);color:#ffda83;border-color:var(--navy)}
+main{max-width:950px;margin:30px auto;padding:0 16px 55px}
+.welcome{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;margin-bottom:18px}
+.welcome strong{font-size:16px}.welcome small{display:block;color:var(--muted)}
+.count{font-size:13px;color:var(--muted);white-space:nowrap}
+.section{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:18px 0;overflow:hidden;scroll-margin-top:145px}
+.section[hidden]{display:none}
+.section-head{display:flex;align-items:center;gap:14px;padding:22px 24px;border-bottom:1px solid var(--line)}
+.icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,#17253a,#263b55);font-size:25px;flex:none}
+.kicker{font-size:12px;color:var(--gold);font-weight:900}
+h2{font-size:clamp(18px,3vw,25px);line-height:1.55;margin:1px 0 0;font-weight:900}
+.bookmark{margin-right:auto;border:0;background:transparent;color:var(--muted);font-size:23px;padding:5px}
+.bookmark.saved{color:var(--gold)}
+.content{padding:22px 25px 26px;font-size:var(--content-size,16px)}
+.content p{margin:0 0 16px}
+.lead{font-size:1.06em;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.tile{border:1px solid var(--line);background:var(--surface2);border-radius:16px;padding:15px}
+.tile h3{font-size:16px;margin:0 0 6px;font-weight:900}
+.tile p{font-size:.92em;color:var(--muted);margin:0}
+.callout{border-right:4px solid var(--gold);background:linear-gradient(110deg,#d99a2012,var(--surface2));padding:17px 18px;border-radius:14px;margin:16px 0}
+.callout strong{display:block;margin-bottom:5px}
+.callout p{margin:0;color:var(--muted)}
+.tasks{border-top:1px dashed var(--line);padding-top:15px;margin-top:20px}
+.tasks h3{font-size:15px;margin:0 0 10px}
+.task{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin:8px 0;background:var(--surface2);cursor:pointer}
+.task input{accent-color:var(--green);width:18px;height:18px;margin-top:5px;flex:none}
+.task span{font-size:.91em}
+.task input:checked+span{text-decoration:line-through;color:var(--muted)}
+.empty{text-align:center;padding:55px 15px;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:18px}
+.footer{text-align:center;padding:28px 16px 38px;color:var(--muted);font-size:13px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:9px 17px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:120;font-size:13px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:650px){.hero{padding:40px 16px 32px}.toolbar-inner{flex-wrap:wrap}.search-wrap{flex-basis:100%}.tool-btn{flex:1}.section-head{padding:17px}.content{padding:17px}.grid{grid-template-columns:1fr}.welcome{align-items:flex-start}.icon{width:45px;height:45px;font-size:22px}.bookmark{font-size:21px}}
+@media print{body{background:#fff!important;color:#111!important}.hero{padding:20px;background:#fff!important;color:#111;border-bottom:2px solid #ddd}.hero p,.eyebrow,.stats,.toolbar,.tabs,.bookmark,.footer,.welcome{display:none!important}h1,h1 em{color:#111!important}.section{box-shadow:none;border:1px solid #ddd;break-inside:avoid;margin:12px 0}.section[hidden]{display:block!important}.content{color:#111}.tile,.callout{background:#fff!important}.task{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+<header class="hero">
+ <div class="hero-inner">
+  <div class="eyebrow">✦ ڕێبەری پەروەردەیی · تەمەنی ١٣–١٨ ساڵ</div>
+  <h1>کتێبی ڕێبەری گەنجان<br><em>ڕێگای سەرکەوتن</em></h1>
+  <p>ڕێبەرێکی کردارەکی بۆ گەشەی کەسایەتی، تەندروستی، خوێندن، پەیوەندییەکان و دروستکردنی داهاتوویەکی باشتر.</p>
+  <div class="stats"><span class="stat">📚 ١٢ بەش</span><span class="stat">🎯 ڕێنمایی کردارەکی</span><span class="stat">🌱 گەشەی بەردەوام</span></div>
+ </div>
+</header>
+<div class="toolbar">
+ <div class="toolbar-inner">
+  <div class="search-wrap"><span>⌕</span><input id="search" class="search" type="search" placeholder="گەڕان لە ناو بابەتەکان..." aria-label="گەڕان"></div>
+  <button class="tool-btn" id="themeBtn" type="button">🌙 شەو</button>
+  <button class="tool-btn" id="fontDown" type="button" aria-label="بچووککردنەوەی نووسین">A−</button>
+  <button class="tool-btn" id="fontUp" type="button" aria-label="گەورەکردنی نووسین">A+</button>
+  <button class="tool-btn" id="printBtn" type="button">🖨️ چاپ / PDF</button>
+ </div>
+ <nav class="tabs" aria-label="فلتەری بەشەکان">
+  <button class="tab active" data-filter="all">هەموو بەشەکان</button>
+  <button class="tab" data-filter="smoking">🚭 جگەرە و ڤایپ</button>
+  <button class="tab" data-filter="mental">🧠 دەرووندروستی</button>
+  <button class="tab" data-filter="digital">📱 دیجیتال</button>
+  <button class="tab" data-filter="social">🤝 خێزان و هاوڕێ</button>
+  <button class="tab" data-filter="study">📚 خوێندن</button>
+  <button class="tab" data-filter="goals">🎯 ئامانج</button>
+  <button class="tab" data-filter="health">🏃 تەندروستی</button>
+  <button class="tab" data-filter="finance">💰 دارایی</button>
+  <button class="tab" data-filter="safety">🛡️ خۆپاراستن</button>
+  <button class="tab" data-filter="hobbies">🎨 بەهرە</button>
+  <button class="tab" data-filter="etiquette">⚖️ ڕەفتار</button>
+  <button class="tab" data-filter="puberty">🌱 گۆڕانکاری</button>
+  <button class="tab" data-filter="saved">🔖 دڵخوازەکان</button>
+ </nav>
+</div>
+<main>
+ <div class="welcome"><div><strong>بەخێربێیت بۆ ڕێگای سەرکەوتن</strong><small>بەشێک هەڵبژێرە، بخوێنەوە و هەنگاوەکانت نیشانە بکە.</small></div><div class="count" id="resultCount">١٢ بەش</div></div>
+ <div id="sections">
+ <section class="section" data-category="smoking" id="smoking"><div class="section-head"><div class="icon">🚭</div><div><div class="kicker">بەشی یەکەم</div><h2>مەترسییەکانی جگەرە، ڤایپ و نێرگەلە</h2></div><button class="bookmark" aria-label="زیادکردن بۆ دڵخوازەکان" type="button">☆</button></div><div class="content"><p class="lead">قۆناغی هەرزەکاری کاتی تاقیکردنەوە و دۆزینەوەی سەربەخۆییە؛ بەڵام هەندێک تاقیکردنەوە دەتوانێت زیانی درێژخایەن هەبێت.</p><div class="callout"><strong>🔬 نیکۆتین و مێشکی گەنج</strong><p>مێشک لە تەمەنی گەنجیدا هێشتا لە گەشەدایە. نیکۆتین دەتوانێت کاریگەری لەسەر تەرکیز، فێربوون و سیستەمی پاداشت هەبێت و مەترسی وابەستەبوون زیاد بکات.</p></div><div class="grid"><article class="tile"><h3>١. ڤایپ تەنها هەڵم نییە</h3><p>هەڵمی ڤایپ دەتوانێت نیکۆتین و ماددە کیمیاییە زیانبەخشەکان لەخۆ بگرێت؛ بۆیە بێ‌مەترسی نییە.</p></article><article class="tile"><h3>٢. نێرگەلەش زیانبەخشە</h3><p>دووکەڵی نێرگەلە ماددەی ژەهراوی و گازی کاربۆن مۆنۆکسایدی تێدایە؛ ئاوی نێرگەلە دووکەڵەکە پاک ناکاتەوە.</p></article><article class="tile"><h3>٣. زیانی دارایی</h3><p>خەرجی بەردەوامی جگەرە و ڤایپ دەتوانرێت بۆ خوێندن، وەرزش و فێربوونی بەهرە بەکاربهێنرێت.</p></article><article class="tile"><h3>٤. فشار و هاوڕێیان</h3><p>هاوڕێی باش ڕێز لە بڕیارە تەندروستەکانت دەگرێت. بۆ ڕەتکردنەوە پێویست ناکات هۆکارێکی درێژ بهێنیتەوە.</p></article></div><div class="callout"><strong>🛡️ وەڵامی ئامادە بۆ «نەخێر»</strong><p>«نەخێر سوپاس، من ئەمە ناکەم.» پاشان بابەتەکە بگۆڕە یان شوێنەکە بەجێبهێڵە. ئەگەر هەستت بە فشار کرد، لە کەسێکی متمانەپێکراو یارمەتی بخوازە.</p></div><div class="tasks"><h3>✅ هەنگاوەکانی من</h3><label class="task"><input type="checkbox" data-task="sm1"><span>دوورکەوتنەوە لە شوێنی پڕ لە دووکەڵ.</span></label><label class="task"><input type="checkbox" data-task="sm2"><span>ڕاهێنان لەسەر ڕەتکردنەوەی فشارەکانی هاوڕێیان.</span></label><label class="task"><input type="checkbox" data-task="sm3"><span>هەڵبژاردنی چالاکییەکی وەرزشی تەندروست.</span></label></div></div></section>
+ <section class="section" data-category="mental" id="mental"><div class="section-head"><div class="icon">🧠</div><div><div class="kicker">بەشی دووەم</div><h2>دەرووندروستی و بەڕێوەبردنی هەستەکان</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">تەندروستی دەروونی بەقەد تەندروستی جەستەیی گرنگە. هەستکردن بە دڵەڕاوکێ، تووڕەیی یان خەم لە هەندێک کاتدا ڕوودەدات؛ گرنگە فێری داوای یارمەتی و مامەڵەکردن لەگەڵیان ببیت.</p><div class="grid"><article class="tile"><h3>😰 دڵەڕاوکێ</h3><p>تەکنیکی ٥-٤-٣-٢-١ تاقی بکەرەوە: ٥ شت ببینە، ٤ شت دەستیان لێبدە، ٣ دەنگ ببیستە، ٢ بۆن هەست پێبکە و ١ تام تاقی بکەرەوە.</p></article><article class="tile"><h3>🔥 کۆنتڕۆڵی تووڕەیی</h3><p>پێش وەڵامدانەوە بوەستە، چەند هەناسەیەکی قووڵ بدە و کاتێک ئارام بوویت قسە بکە.</p></article><article class="tile"><h3>📝 نووسینی هەستەکان</h3><p>هەست و بیرۆکەکانت لە دەفتەرێکدا بنووسە؛ ئەمە یارمەتیت دەدات باشتر خۆت بناسیت.</p></article><article class="tile"><h3>🤝 داوای یارمەتی</h3><p>ئەگەر خەم یان دڵەڕاوکێ بەردەوام بوو و کاریگەری لە ژیانی ڕۆژانەت دانا، لەگەڵ دایک‌وباوک، مامۆستا یان پسپۆڕێکی متمانەپێکراو قسە بکە.</p></article></div><div class="tasks"><h3>✅ ڕاهێنانی هۆشیاری دەروونی</h3><label class="task"><input type="checkbox" data-task="me1"><span>سێ شتی باشی ئەمڕۆم دەنووسم.</span></label><label class="task"><input type="checkbox" data-task="me2"><span>کاتێک پەستانم هەبوو، هەناسەی هێواش ڕادەکێشم.</span></label></div></div></section>
+ <section class="section" data-category="digital" id="digital"><div class="section-head"><div class="icon">📱</div><div><div class="kicker">بەشی سێیەم</div><h2>هۆشیاری دیجیتاڵ و بەکارهێنانی مۆبایل</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">ئامێرە دیجیتاڵییەکان سوودمەندن، بەڵام پێویستە تۆ کاتی بەکارهێنانیان کۆنتڕۆڵ بکەیت، نەک ئەوان کاتی تۆ.</p><div class="grid"><article class="tile"><h3>🔕 ئاگادارکردنەوەکان</h3><p>ئاگادارکردنەوەی ئەپە ناپێویستەکان داخە تا تەرکیزت پارێزراو بێت.</p></article><article class="tile"><h3>⏱️ کاتی شاشە</h3><p>کاتێکی دیاریکراو بۆ تۆڕە کۆمەڵایەتییەکان دابنێ و پێش هەموو شتێک ئەرکەکانت تەواو بکە.</p></article><article class="tile"><h3>🔐 تایبەتمەندی</h3><p>ناونیشان، وشەی نهێنی، ژمارەی مۆبایل و وێنەی تایبەتی لەگەڵ کەسی نەناسراو هاوبەش مەکە.</p></article><article class="tile"><h3>🌙 پێش خەوتن</h3><p>مۆبایل لە دوور بخەرەوە و کەمێک پێش خەوتن ئارام بگرە.</p></article></div><div class="tasks"><h3>✅ پاکوخاوێنی دیجیتاڵ</h3><label class="task"><input type="checkbox" data-task="di1"><span>ئاگادارکردنەوە ناپێویستەکانم داخەم.</span></label><label class="task"><input type="checkbox" data-task="di2"><span>پێش خەوتن مۆبایل لە خۆم دوور دەخەمەوە.</span></label></div></div></section>
+ <section class="section" data-category="social" id="social"><div class="section-head"><div class="icon">🤝</div><div><div class="kicker">بەشی چوارەم</div><h2>خێزان، هاوڕێیەتی و کەسایەتی سەربەخۆ</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">پەیوەندییە تەندروستەکان لەسەر ڕێز، متمانە، گوێگرتن و سنووری ڕوون بنیاد دەنرێن.</p><div class="grid"><article class="tile"><h3>💚 هاوڕێی باش</h3><p>هاوڕێی باش هانت دەدات گەشە بکەیت، ڕێز لە بڕیارەکانت دەگرێت و بە گاڵتە سووکایەتی ناکات.</p></article><article class="tile"><h3>👨‍👩‍👧 گفتوگۆی خێزانی</h3><p>کاتێک ناکۆکی هەبوو، بە هێمنی قسە بکە، گوێ بگرە و هەوڵ بدە هۆکاری یەکتر تێبگەیت.</p></article><article class="tile"><h3>🚧 سنووری کەسی</h3><p>مافت هەیە بە ڕێزەوە «نەخێر» بڵێیت و داوای ڕێزگرتن لە سنوورەکانت بکەیت.</p></article><article class="tile"><h3>🗣️ گوێگرتنی چالاک</h3><p>کاتێک کەسێک قسە دەکات، قسەی مەبڕە و پرسیار بکە بۆ دڵنیابوون لە تێگەیشتنت.</p></article></div><div class="tasks"><h3>✅ پەیوەندییەکانم</h3><label class="task"><input type="checkbox" data-task="so1"><span>ڕۆژانە کاتێک بۆ گفتوگۆ لەگەڵ خێزان تەرخان دەکەم.</span></label><label class="task"><input type="checkbox" data-task="so2"><span>لە پەیوەندییەکانمدا ڕێز و سنوور دەپارێزم.</span></label></div></div></section>
+ <section class="section" data-category="study" id="study"><div class="section-head"><div class="icon">📚</div><div><div class="kicker">بەشی پێنجەم</div><h2>هونەری خوێندن و سەرکەوتنی ئەکادیمی</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">خوێندنی زیرەکانە لە خوێندنی زۆر بەسوودترە. دووبارەکردنەوەی بە پلانی زانستی و تاقیکردنەوەی خۆت یارمەتیدەرە.</p><div class="grid"><article class="tile"><h3>🎯 بیرھێنانەوەی چالاک</h3><p>کتێبەکە دابخە و هەوڵ بدە بە زمانی خۆت ئەوەی خوێندووتەوە ڕوون بکەیتەوە.</p></article><article class="tile"><h3>🔄 دووبارەکردنەوەی ماوەدار</h3><p>بابەتەکان دوای یەک ڕۆژ، چەند ڕۆژ و هەفتەیەک دووبارە بکەرەوە.</p></article><article class="tile"><h3>🍅 تەکنیکی پۆمۆدۆرۆ</h3><p>٢٥ خولەک بە تەرکیز بخوێنە و ٥ خولەک پشوو بدە؛ بە پێی توانای خۆت بیگۆڕە.</p></article><article class="tile"><h3>🧪 تاقیکردنەوەی خۆت</h3><p>پرسیاری نموونە چارەسەر بکە بۆ ئەوەی لاوازییەکانت بناسیت.</p></article></div><div class="tasks"><h3>✅ پلانی خوێندن</h3><label class="task"><input type="checkbox" data-task="st1"><span>ئەرکەکانی ئەمڕۆم بە ڕیزبەندی دەنووسم.</span></label><label class="task"><input type="checkbox" data-task="st2"><span>لە کاتی خوێندن مۆبایل دادەنێم لە دوورەوە.</span></label></div></div></section>
+ <section class="section" data-category="goals" id="goals"><div class="section-head"><div class="icon">🎯</div><div><div class="kicker">بەشی شەشەم</div><h2>ئامانج، پلانڕێژی و بەڕێوەبردنی کات</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">داهاتوو بە هەنگاوە بچووکە بەردەوامەکان دروست دەبێت. ئامانجی ڕوون هەنگاوی یەکەمە.</p><div class="callout"><strong>⭐ یاسای SMART</strong><p>ئامانجەکەت دیاریکراو، پێوراو، گونجاو، پەیوەندیدار و کاتدار بێت. بۆ نموونە: «لە ماوەی مانگێکدا هەموو ڕۆژێک ٢٠ خولەک ئینگلیزی دەخوێنم».</p></div><div class="grid"><article class="tile"><h3>🗓️ پلانێکی هەفتانە</h3><p>خوێندن، پشوو، خێزان و خولیاکانت لە خشتەیەکدا ڕێکبخە.</p></article><article class="tile"><h3>🧩 هەنگاوی بچووک</h3><p>ئامانجی گەورە بکە بە ئەرکی بچووک کە بتوانیت ئەمڕۆ دەستی پێبکەیت.</p></article></div><div class="tasks"><h3>✅ ئامانجەکانم</h3><label class="task"><input type="checkbox" data-task="go1"><span>سێ ئامانجی گرنگی ئەم ساڵە دەنووسم.</span></label><label class="task"><input type="checkbox" data-task="go2"><span>هەفتانە پێداچوونەوە بە پێشکەوتنم دەکەم.</span></label></div></div></section>
+ <section class="section" data-category="health" id="health"><div class="section-head"><div class="icon">🏃</div><div><div class="kicker">بەشی حەوتەم</div><h2>تەندروستی جەستە، خۆراک و خەو</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">جەستەی تەندروست یارمەتیدەری تەرکیز، وزە و هەستی باشە. پێویستە خواردن، جووڵە و خەو هاوسەنگ بن.</p><div class="grid"><article class="tile"><h3>🥗 خۆراکی هاوسەنگ</h3><p>جۆراوجۆری سەوزە، میوە، دانەوێڵە، پرۆتین و خواردنی ماڵەوە هەڵبژێرە.</p></article><article class="tile"><h3>💧 ئاودانەوە</h3><p>بەپێی تەمەن، کەشوهەوا و چالاکییەکانت بەردەوام ئاو بخۆرەوە.</p></article><article class="tile"><h3>😴 خەوی باش</h3><p>بۆ زۆربەی هەرزەکاران ٨–١٠ کاتژمێر خەو لە شەودا پێشنیار دەکرێت.</p></article><article class="tile"><h3>⚽ جووڵە و وەرزش</h3><p>هەوڵ بدە هەموو ڕۆژێک چالاکییەکی جەستەیی خۆش ئەنجام بدەیت.</p></article></div><div class="tasks"><h3>✅ ڕۆتینی تەندروستی</h3><label class="task"><input type="checkbox" data-task="he1"><span>ئەمڕۆ چالاکییەکی جەستەیی ئەنجام دەدەم.</span></label><label class="task"><input type="checkbox" data-task="he2"><span>کاتێکی جێگیر بۆ خەوتن هەڵدەبژێرم.</span></label></div></div></section>
+ <section class="section" data-category="finance" id="finance"><div class="section-head"><div class="icon">💰</div><div><div class="kicker">بەشی هەشتەم</div><h2>هۆشیاری دارایی و پاشەکەوتکردن</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">فێربوونی بەڕێوەبردنی پارە لە تەمەنی گەنجیدا بناغەی بڕیاری داراییی باشترە لە داهاتوودا.</p><div class="grid"><article class="tile"><h3>📊 داهات و خەرجی</h3><p>پارەی وەرگیراو و خەرجکراو بنووسە تا بزانیت پارەکەت لە کوێدا دەچێت.</p></article><article class="tile"><h3>🐷 پاشەکەوت</h3><p>بڕێکی بچووک و جێگیر لە پارەکەت بۆ ئامانجێکی دیاریکراو لای بنێ.</p></article><article class="tile"><h3>🛍️ پێش کڕین بیر بکەرەوە</h3><p>جیاوازی پێویستی و ئارەزوو بناسە و پێش کڕین کەمێک چاوەڕێ بکە.</p></article><article class="tile"><h3>💡 بەهرەی داهاتوو</h3><p>زمان، دیزاین، بەرنامەسازی و توانای گفتوگۆ بەهرەن کە دەتوانیت پەرەیان پێبدەیت.</p></article></div><div class="tasks"><h3>✅ پلانی دارایی</h3><label class="task"><input type="checkbox" data-task="fi1"><span>خەرجییەکانم تۆمار دەکەم.</span></label><label class="task"><input type="checkbox" data-task="fi2"><span>بۆ ئامانجێکی بچووک پاشەکەوت دەکەم.</span></label></div></div></section>
+ <section class="section" data-category="safety" id="safety"><div class="section-head"><div class="icon">🛡️</div><div><div class="kicker">بەشی نۆیەم</div><h2>خۆپاراستن و سەلامەتی کەسی و دیجیتاڵ</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">سەلامەتی و ڕێزگرتن لە جەستە و تایبەتمەندییەکانت مافێکی بنەڕەتییە. ئەگەر هەستت بە مەترسی کرد، تەنها مەمێنەوە و یارمەتی بخوازە.</p><div class="grid"><article class="tile"><h3>📱 گێچەڵی ئۆنلاین</h3><p>بەڵگەکان بپارێزە، ئەکاونتەکە ڕاپۆرت و بلۆک بکە و بە کەسێکی گەورەی متمانەپێکراو بڵێ.</p></article><article class="tile"><h3>🔑 وشەی نهێنی</h3><p>وشەی نهێنی بەهێز و جیاواز بەکاربهێنە و لەگەڵ کەس هاوبەشی مەکە.</p></article><article class="tile"><h3>🚦 لە دۆخی مەترسیدا</h3><p>بەرەو شوێنێکی گشتی و سەلامەت بڕۆ و پەیوەندی بە خێزان یان فریاکەوتنی ناوخۆییەوە بکە.</p></article><article class="tile"><h3>🧍 مافی جەستە</h3><p>مافت هەیە سنووری جەستەیی دیاری بکەیت؛ ئەگەر کەسێک سنوورەکانت شکاند، بە کەسێکی متمانەپێکراو ئاگاداری بدە.</p></article></div><div class="tasks"><h3>✅ ڕێنمایی خۆپاراستن</h3><label class="task"><input type="checkbox" data-task="sa1"><span>وشەی نهێنییەکانم بە کەس نادەم.</span></label><label class="task"><input type="checkbox" data-task="sa2"><span>دەزانم لە کێ داوای یارمەتی بکەم.</span></label></div></div></section>
+ <section class="section" data-category="hobbies" id="hobbies"><div class="section-head"><div class="icon">🎨</div><div><div class="kicker">بەشی دەیەم</div><h2>خولیا، بەهرە و داهێنان</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">خولیاکان ژیان پڕماناتر دەکەن و دەرفەتێکن بۆ ناسینی تواناکانی خۆت. پێویست ناکات لە سەرەتا شارەزا بیت؛ گرنگ دەستپێکردنە.</p><div class="grid"><article class="tile"><h3>🎨 داهێنان</h3><p>وێنەکێشان، نووسین، دروستکردنی شتی دەستی یان دیزاین تاقی بکەرەوە.</p></article><article class="tile"><h3>⚽ چالاکی</h3><p>وەرزش، باخچەوانی، خوێندنەوە یان فێربوونی ئامێرێک هەڵبژێرە.</p></article></div><div class="tasks"><h3>✅ گەشەدانی خولیا</h3><label class="task"><input type="checkbox" data-task="ho1"><span>خولیایەکی نوێ تاقی دەکەمەوە.</span></label><label class="task"><input type="checkbox" data-task="ho2"><span>هەفتانە کاتێک بۆ بەهرەکەم تەرخان دەکەم.</span></label></div></div></section>
+ <section class="section" data-category="etiquette" id="etiquette"><div class="section-head"><div class="icon">⚖️</div><div><div class="kicker">بەشی یانزدەیەم</div><h2>ڕەفتاری جوان، ئەتەکێت و سەرکردایەتی</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">سەرکردایەتی بە نموونەبوون دەست پێدەکات: ڕێزگرتن، بەرپرسیاریەتی و یارمەتیدانی کەسانی تر.</p><div class="grid"><article class="tile"><h3>🙏 وشەی جوان</h3><p>«تکایە»، «سوپاس» و داوای لێبوردن بە شوێنی خۆیان بەکاربهێنە.</p></article><article class="tile"><h3>👂 گوێگرتن</h3><p>گوێ لە قسەی کەسانی تر بگرە و بەبێ پچڕاندن وەڵام بدەرەوە.</p></article><article class="tile"><h3>⏰ پابەندی</h3><p>کات بپارێزە و ئەگەر نەتتوانی لە کاتێکدا ئامادە بیت، پێشوەختە ئاگاداری بدە.</p></article><article class="tile"><h3>🤲 هاوکاری</h3><p>لە کارە هاوبەشەکاندا بەرپرسیاریەتی وەربگرە و ڕێز لە بیرۆکەی جیاواز بگرە.</p></article></div><div class="tasks"><h3>✅ ڕاهێنانی ڕەفتار</h3><label class="task"><input type="checkbox" data-task="et1"><span>ئەمڕۆ بە وردی گوێ لە کەسێک دەگرم.</span></label><label class="task"><input type="checkbox" data-task="et2"><span>لە کاتی گفتوگۆ مۆبایل دادەنێم.</span></label></div></div></section>
+ <section class="section" data-category="puberty" id="puberty"><div class="section-head"><div class="icon">🌱</div><div><div class="kicker">بەشی دووانزدەیەم</div><h2>گۆڕانکارییەکانی تەمەن و خۆقبوڵکردن</h2></div><button class="bookmark" type="button" aria-label="دڵخواز">☆</button></div><div class="content"><p class="lead">پێگەیشتن قۆناغێکی سروشتییە. خێرایی گەشە و گۆڕانکارییەکان لە کەسێکەوە بۆ کەسێکی تر جیاوازە؛ خۆت بە کەسانی تر مەبەراوردە.</p><div class="grid"><article class="tile"><h3>🌿 گۆڕانکاریی جەستە</h3><p>گۆڕانی دەنگ، باڵا، پێست و شێوەی جەستە دەتوانێت بە شێوەی جیاواز ڕووبدات و زۆرجار بەشێکە لە گەشەی ئاسایی.</p></article><article class="tile"><h3>🧼 خاوێنی کەسی</h3><p>شۆردنەوەی بەردەوام، گۆڕینی جل و گرنگیدان بە پاکوخاوێنی یارمەتیدەرە.</p></article><article class="tile"><h3>💛 خۆقبوڵکردن</h3><p>بەها و تواناکانت تەنها بە شێوەی دەرەوە دیاری ناکرێن؛ خۆت بە ڕێزەوە مامەڵە لەگەڵ خۆت بکە.</p></article><article class="tile"><h3>🩺 پرسیاری تەندروستی</h3><p>ئەگەر نیگەرانییەکت هەیە، لە دایک‌وباوک یان پزیشکێکی متمانەپێکراو پرسیار بکە.</p></article></div><div class="tasks"><h3>✅ خۆقبوڵکردن</h3><label class="task"><input type="checkbox" data-task="pu1"><span>بەراوردکردنی خۆم لەگەڵ کەسانی تر کەم دەکەمەوە.</span></label><label class="task"><input type="checkbox" data-task="pu2"><span>گرنگی بە خاوێنی و تەندروستی خۆم دەدەم.</span></label></div></div></section>
+ </div>
+ <div class="empty" id="empty" hidden><div style="font-size:38px">🔎</div><strong>هیچ بەشێک نەدۆزرایەوە</strong><div>وشەیەکی تر تاقی بکەرەوە یان فلتەرەکە بگۆڕە.</div></div>
+</main>
+<footer class="footer">📖 ڕێگای سەرکەوتن · بۆ پەروەردە و گەشەی نەوەی نوێ<br>© 2026</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+ 'use strict';
+ const $=(s,root=document)=>root.querySelector(s);
+ const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+ const sections=$$('.section'), tabs=$$('.tab'), search=$('#search'), count=$('#resultCount'), empty=$('#empty');
+ let activeFilter='all', fontSize=16;
+ const storage={get(k,fallback){try{const v=localStorage.getItem(k);return v===null?fallback:JSON.parse(v)}catch(_){return fallback}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(_){}}};
+ let saved=storage.get('guide-bookmarks',[]);
+ let completed=storage.get('guide-tasks',{});
+ let theme=storage.get('guide-theme','light');
+ document.documentElement.dataset.theme=theme;
+ function toast(message){const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),1800)}
+ function renderBookmarks(){sections.forEach(section=>{const btn=$('.bookmark',section);const yes=saved.includes(section.dataset.category);btn.classList.toggle('saved',yes);btn.textContent=yes?'★':'☆';btn.setAttribute('aria-pressed',String(yes))})}
+ function applyFilter(){
+  const q=search.value.trim().toLocaleLowerCase();
+  let shown=0;
+  sections.forEach(section=>{
+   const matchText=!q||section.innerText.toLocaleLowerCase().includes(q);
+   const matchFilter=activeFilter==='all'||(activeFilter==='saved'?saved.includes(section.dataset.category):section.dataset.category===activeFilter);
+   const visible=matchText&&matchFilter;
+   section.hidden=!visible;if(visible)shown++;
+  });
+  count.textContent=shown+' / ١٢ بەش';
+  empty.hidden=shown!==0;
+ }
+ tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  activeFilter=tab.dataset.filter;tabs.forEach(t=>t.classList.toggle('active',t===tab));applyFilter();
+  if(activeFilter!=='all')window.scrollTo({top:$('.welcome').offsetTop-105,behavior:'smooth'});
+ }));
+ search.addEventListener('input',applyFilter);
+ $$('.bookmark').forEach(btn=>btn.addEventListener('click',()=>{
+  const key=btn.closest('.section').dataset.category;
+  saved=saved.includes(key)?saved.filter(x=>x!==key):saved.concat(key);
+  storage.set('guide-bookmarks',saved);renderBookmarks();applyFilter();toast(saved.includes(key)?'بەشەکە زیادکرا بۆ دڵخوازەکان':'بەشەکە لادرا لە دڵخوازەکان');
+ }));
+ $$('input[data-task]').forEach(input=>{
+  input.checked=!!completed[input.dataset.task];
+  input.addEventListener('change',()=>{completed[input.dataset.task]=input.checked;storage.set('guide-tasks',completed)});
+ });
+ $('#themeBtn').addEventListener('click',()=>{
+  theme=theme==='dark'?'light':'dark';document.documentElement.dataset.theme=theme;storage.set('guide-theme',theme);
+  $('#themeBtn').textContent=theme==='dark'?'☀️ ڕۆژ':'🌙 شەو';
+ });
+ $('#themeBtn').textContent=theme==='dark'?'☀️ ڕۆژ':'🌙 شەو';
+ function setFont(delta){fontSize=Math.max(14,Math.min(21,fontSize+delta));document.documentElement.style.setProperty('--content-size',fontSize+'px')}
+ $('#fontUp').addEventListener('click',()=>setFont(1));$('#fontDown').addEventListener('click',()=>setFont(-1));
+ $('#printBtn').addEventListener('click',()=>window.print());
+ function updateProgress(){const doc=document.documentElement;const max=doc.scrollHeight-doc.clientHeight;const pct=max>0?(doc.scrollTop/max)*100:0;$('#progressBar').style.width=pct+'%'}
+ window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);updateProgress();
+ renderBookmarks();applyFilter();
+})();
+</script>
+</body>
+</html>
